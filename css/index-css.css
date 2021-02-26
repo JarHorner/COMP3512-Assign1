@@ -4,27 +4,79 @@ body {
 }
 
 .box {
-    border-radius: 5px;
+    border-radius: 2px;
     background-color: #a3c2c2;
 }
 
-/* css for mainview */
+i, header h1 {
+    display: inline-block;
+}
+
+i {
+    padding: 20px;
+}
+
 .container {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: 25vw 36vw 36vw;
-    grid-template-rows: repeat(8, 100px);
+    grid-template-columns: 20.4vw 36vw 36vw;
+    grid-template-rows: 95px 115px 115px 115px 115px 115px 115px 115px;
 }
 
 .header {
     grid-column: 1 / span 3;
     grid-row: 1 / span 1;
-    padding: 10px;
+    display: flex;
+    align-items: center;
 }
 
+/* css for mainview */
 .companies {
     grid-column: 1 / span 1;
     grid-row: 2 / span 6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inline {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+legend {
+    font-size: 1.5em;
+    padding-right: 15px;
+}
+
+#filter {
+    width: 75%;
+}
+
+.button {
+    background-color: lightgreen;
+    border-radius: 5px;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 15px;
+    margin-left: 45px;
+    margin-right: 45px;
+}
+
+#companylist {
+    height: 525px;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding-left: 10px;
+    padding-right: 29px;
+    display: none;
+}
+
+li {
+    list-style: none;
+    font-size: 1.4em;
 }
 
 .companyinfo {
@@ -47,6 +99,11 @@ body {
     grid-row: 7 / span 1;
 }
 
+li:hover {
+    color: blue;
+    cursor: pointer;
+}
+
 /* css for secondary view */
 
 .second {
@@ -67,3 +124,94 @@ body {
     grid-column: 3 / span 1;
     grid-row: 4 / span 4;
 }
+
+/* loading animation css */
+/* taken from https://loading.io/css/ */
+.lds-roller {
+    display: inline-block;
+    position: relative;
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 40px 40px;
+  }
+  .lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #fff;
+    margin: -4px 0 0 -4px;
+  }
+  .lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+  }
+  .lds-roller div:nth-child(1):after {
+    top: 63px;
+    left: 63px;
+  }
+  .lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+  }
+  .lds-roller div:nth-child(2):after {
+    top: 68px;
+    left: 56px;
+  }
+  .lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+  }
+  .lds-roller div:nth-child(3):after {
+    top: 71px;
+    left: 48px;
+  }
+  .lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+  }
+  .lds-roller div:nth-child(4):after {
+    top: 72px;
+    left: 40px;
+  }
+  .lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+  }
+  .lds-roller div:nth-child(5):after {
+    top: 71px;
+    left: 32px;
+  }
+  .lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+  }
+  .lds-roller div:nth-child(6):after {
+    top: 68px;
+    left: 24px;
+  }
+  .lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+  }
+  .lds-roller div:nth-child(7):after {
+    top: 63px;
+    left: 17px;
+  }
+  .lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+  }
+  .lds-roller div:nth-child(8):after {
+    top: 56px;
+    left: 12px;
+  }
+  @keyframes lds-roller {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

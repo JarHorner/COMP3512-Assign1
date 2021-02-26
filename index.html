@@ -9,36 +9,55 @@
     <title>COMP 3512 Assign1</title> 
 
     <link rel="stylesheet" href="css/index-css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
 </head>
 <body>
     <main class="container">
         <div class="box header">
+            <i class="fa fa-bar-chart" style="font-size:64px;"></i>
             <h1>COMP 3512 Assign1</h1>
         </div>
         <div class="box companies main">
-            box 2
+            <h1>List of Companies</h1>
+            <form>
+                <div class="inline">
+                    <legend>Filter:</legend>
+                    <input type="text" id="filter" placeholder="search for company" list="companylist">
+                </div><br>
+                <div class="inline">
+                    <input type="button" value="Go" class="button">
+                    <input type="reset" value="Clear" class="button reset"> 
+                </div>
+                <nav>
+                    <!-- taken from https://loading.io/css/ -->
+                <div class="lds-roller"><div></div><div></div><div></div><div>
+                </div><div></div><div></div><div></div><div></div></div>
+                    <ul id="companylist">
+                    </ul>
+                </nav>
+            </form>
         </div>
         <div class="box companyinfo main">
-            box 3
+            <h1>Company Information</h1>
         </div>
         <div class="box stockdata main">
-            box 4
+            <h1>Stock Data</h1>
         </div>
         <div class="box map main">
-            box 5
+            <h1>Map</h1>
         </div>
         <div class="box stockcalcs main">
-             box 6
+            box 6
         </div>
         <div class="box charts second">
-            box 7
+            <h1>Charts</h1>
         </div>
         <div class="box description second">
-            box 8
+            <h1>Company Name + Symbol</h1>
         </div>
         <div class="box financials second">
-            box 9
+            <h1>Financials</h1>
         </div>
     </main>
 
