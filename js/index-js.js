@@ -3,7 +3,11 @@ const companyListURL = 'https://www.randyconnolly.com/funwebdev/3rd/api/stocks/c
 const stockDataURL = 'https://www.randyconnolly.com/funwebdev/3rd/api/stocks/history.php?symbol=';
 
 function initMap() {
-    
+    map = new google.maps.Map(document.querySelector('#location'), {
+        center: {lat: 37.3249, lng: -121.999},
+        mapTypeId: 'satellite',
+        zoom: 18
+    });
 }
 
 
@@ -16,7 +20,7 @@ fetch(companyListURL)
         if(response.ok)
             return response.json() 
         else
-            throw new Error("Response from json failed! check fetch.")
+            throw new Error("Response from json failed! check URL or internet connection.")
     })
     .then( data => {
         companies.push(...data);
@@ -27,12 +31,13 @@ fetch(companyListURL)
         });
         companyList.style.display = "inline-block";
         document.querySelector('.lds-roller').style.display = "none";
+        companyList.addEventListener("click", displayCompanyInformation);
     })
     .catch( error => console.log(`found a ${error}`) );
 
 filterBox.addEventListener('keyup', findMatches);
 
-//adds a handler to reset the list when clicked
+//adds a handler to the "Clear" button to repopulate the list when clicked
 document.querySelector(".reset")
         .addEventListener('click', () => {
             companyList.innerHTML = '';
@@ -57,11 +62,21 @@ function findMatches() {
     });
 }
 
-//Function that returns a filtered array, looking through the company array for matching pairs 
-//starting from the beginning of the name.
+/*Function that returns a filtered array, looking through the company array for matching pairs 
+starting from the beginning of the name.*/
 function compareCompanies(wordToFind, companies) {
     return companies.filter( comp => {
         const regex = new RegExp(`^${wordToFind}`, 'gi');
         return comp.name.match(regex);
     });
+}
+
+/*Function that populates multiple sections on the webpage. It uses multiple sub-functions 
+within for clarity*/
+function displayCompanyInformation() {
+
+}
+
+function placeOnMap() {
+    
 }

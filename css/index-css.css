@@ -1,6 +1,6 @@
 
 body {
-    margin: 25px 15px 20px 15px;
+    margin: 10px 10px 10px 10px;
 }
 
 .box {
@@ -19,8 +19,8 @@ i {
 .container {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: 20.4vw 36vw 36vw;
-    grid-template-rows: 95px 115px 115px 115px 115px 115px 115px 115px;
+    grid-template-columns: 22vw 37.5vw 37.5vw;
+    grid-template-rows: 100px 125px 125px 125px 125px 125px 125px 125px;
 }
 
 .header {
@@ -66,11 +66,13 @@ legend {
 }
 
 #companylist {
-    height: 525px;
+    height: 598px;
     overflow: hidden;
     overflow-y: scroll;
     padding-left: 10px;
-    padding-right: 29px;
+    padding-right: 48px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     display: none;
 }
 
@@ -92,6 +94,19 @@ li {
 .map {
     grid-column: 2 / span 1;
     grid-row: 5 / span 3;
+}
+
+.map h1 {
+    font-size: 2em;
+    text-align: center;
+    position: relative;
+    bottom: 20px;
+}
+
+#location {
+    height: 350px;
+    position: relative;
+    bottom: 35px;
 }
 
 .stockcalcs {
