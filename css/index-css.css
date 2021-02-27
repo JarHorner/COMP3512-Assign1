@@ -1,20 +1,25 @@
 
-body {
-    margin: 10px 10px 10px 10px;
-}
+/* general css */
+
+body { margin: 10px 10px 10px 10px; }
 
 .box {
     border-radius: 2px;
     background-color: #a3c2c2;
 }
 
-i, header h1 {
-    display: inline-block;
+.title {
+    font-size: 2em;
+    text-align: center;
+    position: relative;
+    bottom: 20px;
 }
 
-i {
-    padding: 20px;
-}
+i, header h1 { display: inline-block; }
+
+i { padding: 20px; }
+
+li { list-style-position: inside; }
 
 .container {
     display: grid;
@@ -44,6 +49,7 @@ i {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    position: relative;
 }
 
 legend {
@@ -51,14 +57,12 @@ legend {
     padding-right: 15px;
 }
 
-#filter {
-    width: 75%;
-}
+#filter { width: 75%; }
 
 .button {
     background-color: lightgreen;
     border-radius: 5px;
-    padding: 15px 32px;
+    padding: 15px 30px;
     text-align: center;
     font-size: 15px;
     margin-left: 45px;
@@ -66,19 +70,17 @@ legend {
 }
 
 #companylist {
-    height: 598px;
+    height: 612px;
+    width: 92.5%;
     overflow: hidden;
     overflow-y: scroll;
-    padding-left: 10px;
-    padding-right: 48px;
-    margin-top: 0px;
     margin-bottom: 0px;
     display: none;
 }
 
-li {
-    list-style: none;
-    font-size: 1.4em;
+#companylist li { 
+  font-size: 1.4em; 
+  list-style: none;
 }
 
 .companyinfo {
@@ -96,17 +98,11 @@ li {
     grid-row: 5 / span 3;
 }
 
-.map h1 {
-    font-size: 2em;
-    text-align: center;
-    position: relative;
-    bottom: 20px;
-}
-
 #location {
     height: 350px;
     position: relative;
     bottom: 35px;
+    display: none;
 }
 
 .stockcalcs {
@@ -121,9 +117,7 @@ li:hover {
 
 /* css for secondary view */
 
-.second {
-    display: none;
-}
+.second { display: none; }
 
 .charts {
     grid-column: 1 / span 2;
@@ -140,8 +134,9 @@ li:hover {
     grid-row: 4 / span 4;
 }
 
-/* loading animation css */
-/* taken from https://loading.io/css/ */
+/* this section include all code borrowed or inspired by findings on the internet */
+
+/* loading animation css taken from https://loading.io/css/ */
 .lds-roller {
     display: inline-block;
     position: relative;
@@ -230,3 +225,53 @@ li:hover {
     }
   }
   
+/* inspired https://www.w3schools.com/howto/howto_css_modals.asp with personal changes */
+.credits {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+
+.credits-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  border: 1px solid #888;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* Modal Header */
+.credits-header {
+  padding: 2px 16px;
+  text-align: center;
+  font-size: 18px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Modal Body */
+.credits-body {
+  padding: 2px 16px;
+  text-align: center;
+}

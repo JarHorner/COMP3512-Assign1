@@ -17,9 +17,26 @@
         <div class="box header">
             <i class="fa fa-bar-chart" style="font-size:64px;"></i>
             <h1>COMP 3512 Assign1</h1>
+            <div id="our-credits" class="credits">
+                <div class="credits-content">
+                    <div class="credits-header">
+                        <h1>Credits!</h1>
+                    </div>
+                    <div class="credits-body">
+                        <h3>Course Title:</h3>
+                        <p>COMP3512 - Web 2: Web Application Development</p>
+                        <h3>Creators:</h3>
+                        <p>Jarret Horner and Brett Nokonechy</p>
+                        <h3>Third-Party Technology Used:</h3>
+                        <ul>
+                            <li>Google Maps API</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="box companies main">
-            <h1>List of Companies</h1>
+            <h1 class="title">List of Companies</h1>
             <form>
                 <div class="inline">
                     <legend>Filter:</legend>
@@ -39,33 +56,41 @@
             </form>
         </div>
         <div class="box companyinfo main">
-            <h1>Company Information</h1>
+            <h1 class="title">Company Information</h1>
+            <section>
+
+            </section>
         </div>
         <div class="box stockdata main">
-            <h1>Stock Data</h1>
+            <h1 class="title">Stock Data</h1>
+            <section>
+
+            </section>
         </div>
         <div class="box map main">
-            <h1>Map</h1>
+            <h1 class="title">Map</h1>
             <div id="location"></div>
         </div>
         <div class="box stockcalcs main">
-            <p>Average</p>
-            <p>Min</p> 
-            <p>Max</p> 
+            <section>
+                <p>Average</p>
+                <p>Min</p> 
+                <p>Max</p> 
+            </section>
         </div>
         <div class="box charts second">
-            <h1>Charts</h1>
+            <h1 class="title">Charts</h1>
         </div>
         <div class="box description second">
-            <h1>Company Name + Symbol</h1>
+            <h1 class="title">Company Name + Symbol</h1>
         </div>
         <div class="box financials second">
-            <h1>Financials</h1>
+            <h1 class="title">Financials</h1>
         </div>
     </main>
 
     <script src="js/index-js.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoDhFTJxeLlIPNg46PszbXRo8g-CSq75g&callback=initMap">
-    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoDhFTJxeLlIPNg46PszbXRo8g-CSq75g&callback=initMap"
+    asynch defer></script>
 </body>
 </html>
