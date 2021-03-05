@@ -69,6 +69,11 @@ legend {
     margin-right: 45px;
 }
 
+.button:hover{
+  background-color: turquoise;
+  transform: scale(1.2); 
+}
+
 #companylist {
     height: 612px;
     width: 92.5%;
@@ -86,6 +91,64 @@ legend {
 .companyinfo {
     grid-column: 2 / span 1;
     grid-row: 2 / span 3;
+}
+
+.name-logo{
+  width: 97%;
+  margin: 0 auto;
+  display: none;
+  align-items: center;
+  flex-direction: row;
+background-color: white;
+}
+.logo{
+  width: 35%;
+}
+.comp-name{
+  width: 70%;
+  text-align: center;
+}
+.comp-name h1{
+  font-size: 0.9em;
+}
+.symbol{
+  width: 15%;
+  background-color: lightyellow;
+  text-align: center;
+  border-radius: 50%;
+  border: 2px solid  #5cb85c;
+}
+.company-symbol{
+  font-size: 1.1em;
+  font-weight: bolder;
+}
+.other-details{
+  width: 95%;
+  margin: 30px auto;
+  background-color: white;
+  display: none;
+  flex-direction: column;
+}
+.other-details table tr th{
+  color: teal;
+ font-weight: bolder;
+}
+#table-data{
+  font-size: 0.7em;
+}
+.comp-description{
+  width: 95%;
+  margin: 20px auto;
+}
+.comp-description h1{
+  font-size: 1.1em;
+ padding-left: 30%;
+ color: teal;
+ font-weight: bolder;
+
+}
+.comp-description p{
+  font-size: 0.8em;
 }
 
 .stockdata {
