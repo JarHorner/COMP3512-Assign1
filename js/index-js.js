@@ -12,7 +12,8 @@ function initMap() {
 
 const companies = [];
 const filterBox = document.querySelector('#filter');
-const companyList = document.querySelector('#companylist')
+const companyList = document.querySelector('#companylist');
+const companyInfo = document.querySelector(".co-info");
 
 fetch(companyListURL)
     .then( response => {
@@ -105,8 +106,26 @@ function displayInformation(e) {
     populateStockData(company);
 }
 
+/*function to populate company information*/
 function populateCompanyInformation(company) {
-    
+    document.querySelector('.name-logo').style.display = 'flex';
+    document.querySelector('.other-details').style.display = 'flex';
+    const item = document.querySelector('.company-name');
+    const symbol = document.querySelector('.company-symbol');
+    const sector = document.querySelector('.sector');
+    const subIndustry = document.querySelector('.sub-industry');
+    const address = document.querySelector('.address');
+    const website = document.querySelector('.website');
+    const exchange = document.querySelector('.exchange');
+    const companyDescription = document.querySelector('.company-description');
+    item.textContent = company.name;
+    symbol.textContent = company.symbol;
+    sector.textContent = company.sector;
+    subIndustry.textContent = company.subindustry;
+    address.textContent = company.address;
+    website.textContent = company.website;
+    exchange.textContent = company.exchange;
+    companyDescription.textContent = company.description;
 }
 
 /* poopulated the 'map' section with the cooordinates of the specific company */
@@ -119,3 +138,23 @@ function populateMap(company) {
 function populateStockData(company) {
 
 }
+
+function encodeQuery(data, company){ 
+    let query = data.url 
+    for (let d in data.params) 
+         query += encodeURIComponent(d) + '='
+              + encodeURIComponent(data.params[d]) + '&'; 
+    return query.slice(0, -1) 
+} 
+  
+// Json object that should be 
+// converted to query parameter 
+data = {  
+    url : stockDataURL, 
+    params : { 
+        'website':'funwebdev/3rd/api/stocks/history.php', 
+        'symbol': company.symbol
+    } 
+} 
+queryParam = encodeQuery(data) 
+console.log(queryParam)
