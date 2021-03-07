@@ -126,17 +126,56 @@ function populateCompanyInformation(company) {
     website.textContent = company.website;
     exchange.textContent = company.exchange;
     companyDescription.textContent = company.description;
+    
+    const logo = document.querySelector(".logoImage");
+    logo.src = `./logos/${company.symbol}.svg`;
 }
 
-/* poopulated the 'map' section with the cooordinates of the specific company */
+/* populated the 'map' section with the cooordinates of the specific company */
 function populateMap(company) {
     map.setZoom(18);
     map.setCenter(new google.maps.LatLng(company.latitude, company.longitude));
     document.querySelector('#location').style.display = "block";
 }
 
-function populateStockData(company) {
 
+const companyStock = [];
+const date =[];
+function populateStockData(company) {
+  const stockDataURL = `https://www.randyconnolly.com/funwebdev/3rd/api/stocks/history.php?symbol=${company.symbol}`;
+  fetch(stockDataURL)
+    .then((res) => {
+      if (res.ok) return res.json();
+      else
+        throw new Error(
+          "Response from json failed! check URL or internet connection."
+        );
+    })
+    .then((data) => {
+      //need to save JSON to localStorage here
+      companyStock.push(...data)
+      
+      const date = document.querySelector(".date");
+      const open = document.querySelector(".open");
+      const close = document.querySelector(".close");
+      const low = document.querySelector(".low");
+      const high = document.querySelector(".high");
+      const volume = document.querySelector(".volume");
+
+
+      var stockdata = document.querySelector(".stockdata")
+      var tr = document.createComment('tr')
+      companyStock.forEach((item) => {
+        var data =  item.date
+        tr.append(data)
+        var tr =  stockdata.appendChild(tr)
+        td.append(item.date)
+        
+      });
+      })
+    
+    .catch((error) => console.log(`found a ${error}`));
+}
 }
 
 function encodeQuery(data, company){ 
