@@ -96,8 +96,40 @@
         <div class="box stockdata main">
             <h1 class="title">Stock Data</h1>
             <section>
-
+            <h1 id="snackbar"></h1>
             </section>
+            <table class="stockdata" style="width:100%">
+                <tr>
+                  <th>Date</th>
+                  <th>Open</th>
+                  <th>Close</th>
+                  <th>Low</th>
+                  <th>High</th>
+                  <th>Volume</th>
+                </tr>
+                <tr class = "tray">
+                  <td class="tabledata"></td>
+                  <td style="display: flex;flex-direction: row;" id="table-data" data="open" ></td>
+                  <td id="table-data" class="close"></td>
+                  <td id="table-data" class="low"></td>
+                  <td id="table-data" class="high"></td>
+                  <td id="table-data" class="volume"></td>
+
+                </tr>
+              </table>
+              <div class="lds-roller">
+                <div style="background: green;"></div>
+                <div></div>
+                <div></div>
+                <div>
+                </div>
+                <div></div>
+                <div style="background: green;"></div>
+                <div></div>
+                <div style="background: green;"></div>
+            </div>
+        </div>
+        <div class="high"></div>
         </div>
         <div class="box map main">
             <h1 class="title">Map</h1>
