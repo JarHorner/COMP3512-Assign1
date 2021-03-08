@@ -82,13 +82,13 @@
                           <td class="sector" ></td>
                           <td class="sub-industry" ></td>
                           <td class="address"></td>
-                          <td><a href="" class="website"></a></td>
+                          <td><a class="website"></a></td>
                           <td class="exchange"></td>
                         </tr>
                      </table>
                       <div class="comp-description">
                           <h1>Company Description</h1>
-                          <p class="company-description"></p>
+                          <p class="description"></p>
                       </div>
                 </div>
             </section>
@@ -98,25 +98,16 @@
             <section id="stocktable">
                 <table class="data" style="width:100%">
                     <thead>
-                        <tr class="headers">
-                            <th>Date</th>
-                            <th>Open</th>
-                            <th>Close</th>
-                            <th>Low</th>
-                            <th>High</th>
-                            <th>Volume</th>
+                        <tr id="stock-headers">
+                            <th class="stock-header">Date</th>
+                            <th class="stock-header">Open</th>
+                            <th class="stock-header">Close</th>
+                            <th class="stock-header">Low</th>
+                            <th class="stock-header">High</th>
+                            <th class="stock-header">Volume</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr >
-                            <td id="date"></td>
-                            <td id="open" ></td>
-                            <td id="close"></td>
-                            <td id="low"></td>
-                            <td id="high"></td>
-                            <td id="volume"></td>
-                        </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </section>
               <!-- taken from https://loading.io/css/ -->
@@ -131,11 +122,13 @@
             <div id="location"></div>
         </div>
         <div class="box stockcalcs main">
-            <section>
-                <p>Average</p>
-                <p>Min</p> 
-                <p>Max</p> 
-            </section>
+            <table class="calculations" style="width:100%">
+                <tbody>
+                    <tr id="average-row"></tr>
+                    <tr id="min-row"></tr>
+                    <tr id="max-row"></tr>
+                </tbody>
+            </table>
         </div>
         <div class="box charts second">
             <h1 class="title">Charts</h1>
