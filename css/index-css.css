@@ -209,7 +209,7 @@ td {
     grid-row: 7 / span 1;
 }
 
-li:hover {
+table thead th:hover, li:hover {
     color: blue;
     cursor: pointer;
 }
