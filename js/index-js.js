@@ -190,12 +190,12 @@ function populateStockData(company) {
                 stockdata.appendChild(tr);
             });
             stockHeaders.addEventListener('click', organizeData);
+            document.querySelector('.roller2').style.display = "none";
+            document.querySelector('#stocktable').style.display = "block";
             //calculates each row average, min, and max (refer to Calculations)
             calculatingAverage();
             calculatingMin();
             calculatingMax();
-            document.querySelector('.roller2').style.display = "none";
-            document.querySelector('#stocktable').style.display = "block";
             document.querySelector('.calculations').style.display = "block";
         })
         .catch((error) => console.log(`found a ${error}`));
@@ -294,7 +294,7 @@ function calculatingAverage(params) {
             average += Number(x.innerHTML);
             n++;
         }
-        average = (average/n).toFixed(4);
+        average = (average/n).toFixed(3);
         td =  document.createElement('td');
         td.innerHTML  =  average;
         averageRow.appendChild(td);
@@ -313,11 +313,11 @@ function calculatingMin() {
 
     for (let c = 1;  c  < 6;  c++)  {
         //start min as first row entry
-        min  = rows[c].querySelectorAll("td")[c].innerHTML;
+        min  = Number(rows[c].querySelectorAll("td")[c].innerHTML);
         for (let i = 1; i < (rows.length - 1); i++) {
 
             x = rows[i].querySelectorAll("td")[c];
-            if (Number(x.innerHTML)  < min) {
+            if (Number(x.innerHTML) < min) {
                 min = Number(x.innerHTML);
             }
         }
@@ -338,7 +338,7 @@ function calculatingMax() {
     const rows  =  table.rows;
 
     for (let c = 1;  c  < 6;  c++)  {
-        max = rows[c].querySelectorAll("td")[c].innerHTML;;
+        max = Number(rows[c].querySelectorAll("td")[c].innerHTML);
         for (let i = 1; i < (rows.length - 1); i++) {
 
             x = rows[i].querySelectorAll("td")[c];

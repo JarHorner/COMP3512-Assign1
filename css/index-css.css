@@ -185,6 +185,15 @@ legend {
 
 #stock-headers th {
   font-size: 25px;
+  position: sticky;
+  background-color: #a3c2c2;
+  border-bottom: 2px black solid;
+  top: 0;
+}
+
+.data  {
+  text-align: center;
+  position: relative;
 }
 
 .data, .calculations {
@@ -193,7 +202,6 @@ legend {
 
 .data td {
   font-size: 18px;
-  padding-left: 15px;
 }
 
 .map {
@@ -219,18 +227,15 @@ legend {
   left: 10px;
 }
 
-.data thead tr th {
-  border-bottom: 2px black solid;
-}
-
 .data tbody tr td {
   border-bottom: 1px black solid;
 }
 
 .calculations td{
-  font-size: 1.2em;
+  font-size: 1.1em;
   text-align: center;
-  padding-left: 18px;
+  padding-left: 20px;
+  padding-right: 12px;
   padding-bottom: 8px;
   padding-top: 10px;
   border-bottom: 1px black solid;
