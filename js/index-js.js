@@ -89,6 +89,7 @@ function clearButton() {
     document.querySelector('#location').style.display = 'none';
     document.querySelector('#company-information').style.display = 'none';
     document.querySelector('#stocktable').style.display = "none";
+    document.querySelector('.calculations').style.display = "none";
 }
 
 /* Finds the matches within the input box (refer to compare Companies),
@@ -116,6 +117,7 @@ function compareCompanies(wordToFind, companies) {
 
 /* Populates company information panel with coontent related to company 'clicked' */
 function populateCompanyInformation(company) {
+    document.querySelector('#company-information').style.display = 'block';
     document.querySelector('.name-logo').style.display = 'flex';
     document.querySelector('.other-details').style.display = 'flex';
     const logo = document.querySelector(".logo");
@@ -188,8 +190,13 @@ function populateStockData(company) {
                 stockdata.appendChild(tr);
             });
             stockHeaders.addEventListener('click', organizeData);
+            //calculates each row average, min, and max (refer to Calculations)
+            calculatingAverage();
+            calculatingMin();
+            calculatingMax();
             document.querySelector('.roller2').style.display = "none";
             document.querySelector('#stocktable').style.display = "block";
+            document.querySelector('.calculations').style.display = "block";
         })
         .catch((error) => console.log(`found a ${error}`));
 }
@@ -203,28 +210,20 @@ function organizeData(e) {
     table = document.querySelector("table.data");
     switching = true;
     const columnNum = columnNumber(e.target.textContent);
-    // Set the sorting direction to ascending:
     dir = "asc";
-    /* Make a loop that will continue until
-    no switching has been done: */
+   
     while (switching) {
-      // Start by saying: no switching is done:
+
       switching = false;
       rows = table.rows;
-      /* Loop through all table rows (except the
-      first, which contains table headers): */
       for (i = 1; i < (rows.length - 1); i++) {
-        // Start by saying there should be no switching:
         shouldSwitch = false;
-        /* Get the two elements you want to compare,
-        one from current row and one from the next: */
+        
         x = rows[i].querySelectorAll("td")[columnNum];
         y = rows[i + 1].querySelectorAll("td")[columnNum];
-        /* Check if the two rows should switch place,
-        based on the direction, asc or desc: */
+        
         if (dir == "asc" && !(columnNum == 0)) {
             if (Number(x.innerHTML) > Number(y.innerHTML)) {
-                // If so, mark as a switch and break the loop:
                 shouldSwitch = true;
                 break;
             }
@@ -235,7 +234,6 @@ function organizeData(e) {
             }
         } else if (dir == "desc" && !(columnNum == 0)) {
             if (Number(x.innerHTML) < Number(y.innerHTML)) {
-                // If so, mark as a switch and break the loop:
                 shouldSwitch = true;
                 break;
             } 
@@ -247,15 +245,10 @@ function organizeData(e) {
           }
         }
       if (shouldSwitch) {
-        /* If a switch has been marked, make the switch
-        and mark that a switch has been done: */
         rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
         switching = true;
-        // Each time a switch is done, increase this count by 1:
         switchcount ++;
       } else {
-        /* If no switching has been done AND the direction is "asc",
-        set the direction to "desc" and run the while loop again. */
         if (switchcount == 0 && dir == "asc") {
           dir = "desc";
           switching = true;
@@ -279,5 +272,82 @@ function columnNumber(name) {
             return 4;
         case 'Volume':
             return 5;
+    }
+}
+
+function calculatingAverage(params) {
+    let  x, average, n;
+    const table = document.querySelector("table.data");
+    const averageRow  =  document.querySelector("table.calculations #average-row");
+    averageRow.innerHTML =  "";
+    let td =  document.createElement('td');
+    td.innerHTML  = "<b>Average:<b>";
+    averageRow.appendChild(td);
+    const rows  =  table.rows;
+
+    for (let c = 1;  c  < 6;  c++)  {
+        n  =  0;
+        average  = 0;
+        for (let i = 1; i < (rows.length - 1); i++) {
+
+            x = rows[i].querySelectorAll("td")[c];
+            average += Number(x.innerHTML);
+            n++;
+        }
+        average = (average/n).toFixed(4);
+        td =  document.createElement('td');
+        td.innerHTML  =  average;
+        averageRow.appendChild(td);
+    }
+}
+
+function calculatingMin() {
+    let  x, min;
+    const table = document.querySelector("table.data");
+    const minRow  =  document.querySelector("table.calculations #min-row");
+    minRow.innerHTML =  "";
+    let td =  document.createElement('td');
+    td.innerHTML  = "<b>Min:<b>";
+    minRow.appendChild(td);
+    const rows  =  table.rows;
+
+    for (let c = 1;  c  < 6;  c++)  {
+        //start min as first row entry
+        min  = rows[c].querySelectorAll("td")[c].innerHTML;
+        for (let i = 1; i < (rows.length - 1); i++) {
+
+            x = rows[i].querySelectorAll("td")[c];
+            if (Number(x.innerHTML)  < min) {
+                min = Number(x.innerHTML);
+            }
+        }
+        td = document.createElement('td');
+        td.innerHTML  =  min;
+        minRow.appendChild(td);
+    }
+}
+
+function calculatingMax() {
+    let  x, max;
+    const table = document.querySelector("table.data");
+    const maxRow  =  document.querySelector("table.calculations #max-row");
+    maxRow.innerHTML =  "";
+    let td =  document.createElement('td');
+    td.innerHTML  = "<b>Max:<b>";
+    maxRow.appendChild(td);
+    const rows  =  table.rows;
+
+    for (let c = 1;  c  < 6;  c++)  {
+        max = rows[c].querySelectorAll("td")[c].innerHTML;;
+        for (let i = 1; i < (rows.length - 1); i++) {
+
+            x = rows[i].querySelectorAll("td")[c];
+            if (Number(x.innerHTML) > max) {
+                max = Number(x.innerHTML);
+            }
+        }
+        td =  document.createElement('td');
+        td.innerHTML  =  max;
+        maxRow.appendChild(td);
     }
 }

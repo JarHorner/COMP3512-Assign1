@@ -183,13 +183,17 @@ legend {
   height: 585px;
 }
 
-th {
+#stock-headers th {
   font-size: 25px;
 }
 
-td {
+.data, .calculations {
+  border-collapse: collapse;
+}
+
+.data td {
   font-size: 18px;
-  padding-left: 12px;
+  padding-left: 15px;
 }
 
 .map {
@@ -207,6 +211,29 @@ td {
 .stockcalcs {
     grid-column: 3 / span 1;
     grid-row: 7 / span 1;
+}
+
+.stockcalcs p {
+  font-size: 1.2em;
+  position: relative;
+  left: 10px;
+}
+
+.data thead tr th {
+  border-bottom: 2px black solid;
+}
+
+.data tbody tr td {
+  border-bottom: 1px black solid;
+}
+
+.calculations td{
+  font-size: 1.2em;
+  text-align: center;
+  padding-left: 18px;
+  padding-bottom: 8px;
+  padding-top: 10px;
+  border-bottom: 1px black solid;
 }
 
 table thead th:hover, li:hover {
