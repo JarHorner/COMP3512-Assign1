@@ -218,4 +218,3 @@ function populateStockData(company) {
             document.querySelector('.description').style.display = "none";
             document.querySelector('.financials').style.display = "none";
          });
-    }
