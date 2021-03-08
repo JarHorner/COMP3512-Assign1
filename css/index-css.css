@@ -101,18 +101,19 @@ legend {
   align-items: center;
   flex-direction: row;
   background-color: white;
+  position: relative;
+  bottom: 20px;
 }
 
 .logo{
   width: 165px;
   height: 60px;
-  border: 1px black solid;
 }
 
 .comp-name{
   width: 50%;
+  font-size: 20px;
   text-align: center;
-  border: 1px black solid;
 }
 
 .comp-name h1{
@@ -120,12 +121,13 @@ legend {
 }
 
 .symbol{
-  width: 12%;
+  width: 10%;
   background-color: lightyellow;
   text-align: center;
   border-radius: 50%;
   border: 2px solid  #5cb85c;
-  
+  position: relative;
+  left: 110px;
 }
 
 .company-symbol{
@@ -134,11 +136,14 @@ legend {
 }
 
 .other-details{
-  width: 95%;
+  width: 97%;
+  height: 255px;
   margin: 30px auto;
   background-color: white;
   display: none;
   flex-direction: column;
+  position: relative;
+  bottom: 40px;
 }
 
 .other-details table tr th{
@@ -156,14 +161,14 @@ legend {
 }
 
 .comp-description h1{
-  font-size: 1.1em;
+  font-size: 1.5em;
   padding-left: 30%;
   color: teal;
   font-weight: bolder;
 }
 
-.comp-description p{
-  font-size: 0.8em;
+.description {
+  font-size: 1em;
 }
 
 .stockdata {

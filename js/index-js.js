@@ -110,7 +110,6 @@ function displayInformation(e) {
 
 /*function to populate company information*/
 function populateCompanyInformation(company) {
-    document.querySelector('#company-information').style.display = 'block';
     document.querySelector('.name-logo').style.display = 'flex';
     document.querySelector('.other-details').style.display = 'flex';
     const item = document.querySelector('.company-name');
@@ -120,13 +119,14 @@ function populateCompanyInformation(company) {
     const address = document.querySelector('.address');
     const website = document.querySelector('.website');
     const exchange = document.querySelector('.exchange');
-    const companyDescription = document.querySelector('.company-description');
+    const companyDescription = document.querySelector('.description');
     item.textContent = company.name;
     symbol.textContent = company.symbol;
     sector.textContent = company.sector;
     subIndustry.textContent = company.subindustry;
     address.textContent = company.address;
     website.textContent = company.website;
+    website.href = company.website;
     exchange.textContent = company.exchange;
     companyDescription.textContent = company.description;
     
@@ -153,15 +153,9 @@ function populateStockData(company) {
                 throw new Error("Response from json failed! check URL or internet connection.");
         })
         .then((data) => {
+            let json = JSON.stringify(data);
+            localStorage.setItem("Companies", json);
             companyStock = data;
-            
-            const date = document.querySelector(".date");
-            const open = document.querySelector(".open");
-            const close = document.querySelector(".close");
-            const low = document.querySelector(".low");
-            const high = document.querySelector(".high");
-            const volume = document.querySelector(".volume");
-
 
             const stockdata = document.querySelector("table.data tbody")
             stockdata.innerHTML = '';
