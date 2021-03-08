@@ -193,3 +193,29 @@ function populateStockData(company) {
         })
         .catch((error) => console.log(`found a ${error}`));
 }
+
+/* button to switch UI to secondary */
+
+        document.querySelector(".view-chatsBtn").addEventListener('click', () => {
+           document.querySelector('.companies').style.display = "none";
+           document.querySelector('.companyinfo').style.display = "none";
+           document.querySelector('.map').style.display = "none";
+           document.querySelector('.stockdata').style.display = "none";
+           document.querySelector('.stockcalcs').style.display = "none";
+           document.querySelector('.charts').style.display = "block";
+           document.querySelector('.description').style.display = "block";
+           document.querySelector('.financials').style.display = "block";
+        });
+
+         /* button to switch UI to deafult */
+         document.querySelector(".closeBtn").addEventListener('click', () => {
+            document.querySelector('.companies').style.display = "block";
+            document.querySelector('.companyinfo').style.display = "block";
+            document.querySelector('.map').style.display = "block";
+            document.querySelector('.stockdata').style.display = "block";
+            document.querySelector('.stockcalcs').style.display = "block";
+            document.querySelector('.charts').style.display = "none";
+            document.querySelector('.description').style.display = "none";
+            document.querySelector('.financials').style.display = "none";
+         });
+    }
