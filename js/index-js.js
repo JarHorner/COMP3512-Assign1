@@ -139,7 +139,7 @@ function populateMap(company) {
 }
 
 
-const companyStock = [];
+let companyStock = [];
 const date =[];
 function populateStockData(company) {
   const stockDataURL = `https://www.randyconnolly.com/funwebdev/3rd/api/stocks/history.php?symbol=${company.symbol}`;
@@ -153,7 +153,7 @@ function populateStockData(company) {
     })
     .then((data) => {
       //need to save JSON to localStorage here
-      companyStock.push(...data)
+      companyStock = data;
       
       const date = document.querySelector(".date");
       const open = document.querySelector(".open");
@@ -163,19 +163,34 @@ function populateStockData(company) {
       const volume = document.querySelector(".volume");
 
 
-      var stockdata = document.querySelector(".stockdata")
-      var tr = document.createComment('tr')
+      var stockdata = document.querySelector("table.stockdata tbody")
+      stockdata.innerHTML = '';
+      console.log(companyStock)
       companyStock.forEach((item) => {
-        var data =  item.date
-        tr.append(data)
-        var tr =  stockdata.appendChild(tr)
-        td.append(item.date)
-        
+        var tr = document.createElement('tr');
+        var tdDate = document.createElement('td');
+        var tdOpen = document.createElement('td');
+        var tdClose = document.createElement('td');
+        var tdLow = document.createElement('td');
+        var tdHigh = document.createElement('td');
+        var tdVolume = document.createElement('td');
+        tdDate.textContent = item.date;
+        tdOpen.textContent = item.open;
+        tdClose.textContent = item.close;
+        tdLow.textContent = item.low;
+        tdHigh.textContent = item.high;
+        tdVolume.textContent = item.volume;
+        tr.appendChild(tdDate);
+        tr.appendChild(tdOpen);
+        tr.appendChild(tdClose);
+        tr.appendChild(tdLow);
+        tr.appendChild(tdHigh);
+        tr.appendChild(tdVolume);
+        stockdata.appendChild(tr);
       });
       })
     
     .catch((error) => console.log(`found a ${error}`));
-}
 }
 
 function encodeQuery(data, company){ 
