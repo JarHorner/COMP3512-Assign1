@@ -47,7 +47,7 @@
                     <input type="reset" value="Clear" class="button reset"> 
                 </div>
                 <nav>
-                    <!-- taken from https://loading.io/css/ -->
+                <!-- taken from https://loading.io/css/ -->
                 <div class="lds-roller"><div></div><div></div><div></div><div>
                 </div><div></div><div></div><div></div><div></div></div>
                     <ul id="companylist">
@@ -59,8 +59,8 @@
             <h1 class="title">Company Information</h1>
             <section id="company-information">
                 <div class="name-logo">
-                    <div class="logo">
-                        <img src="logos/A.svg" alt="">
+                    <div>
+                        <img class="logo" alt="">
                     </div>
                     <div class="comp-name">
                         <h1 class="company-name"></h1>
@@ -79,11 +79,11 @@
                           <th>Exchange</th>
                         </tr>
                         <tr>
-                          <td id="table-data" class="sector" ></td>
-                          <td id="table-data" class="sub-industry" ></td>
-                          <td id="table-data" class="address"></td>
-                          <td id="table-data"> <a href="" class="website"></a></td>
-                          <td id="table-data" class="exchange"></td>
+                          <td class="sector" ></td>
+                          <td class="sub-industry" ></td>
+                          <td class="address"></td>
+                          <td><a href="" class="website"></a></td>
+                          <td class="exchange"></td>
                         </tr>
                      </table>
                       <div class="comp-description">
@@ -95,42 +95,33 @@
         </div>
         <div class="box stockdata main">
             <h1 class="title">Stock Data</h1>
-            <section>
-            <h1 id="snackbar"></h1>
+            <section id="stocktable">
+                <table class="data" style="width:100%">
+                    <thead>
+                        <tr class="headers">
+                            <th>Date</th>
+                            <th>Open</th>
+                            <th>Close</th>
+                            <th>Low</th>
+                            <th>High</th>
+                            <th>Volume</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr >
+                            <td id="date"></td>
+                            <td id="open" ></td>
+                            <td id="close"></td>
+                            <td id="low"></td>
+                            <td id="high"></td>
+                            <td id="volume"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
-            <table class="stockdata" style="width:100%">
-                <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Open</th>
-                  <th>Close</th>
-                  <th>Low</th>
-                  <th>High</th>
-                  <th>Volume</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class = "tray">
-                  <td class="tabledata"></td>
-                  <td style="display: flex;flex-direction: row;" id="table-data" data="open" ></td>
-                  <td id="table-data" class="close"></td>
-                  <td id="table-data" class="low"></td>
-                  <td id="table-data" class="high"></td>
-                  <td id="table-data" class="volume"></td>
-
-                </tr>
-              </tbody>
-              </table>
-              <div class="lds-roller">
-                <div style="background: green;"></div>
-                <div></div>
-                <div></div>
-                <div>
-                </div>
-                <div></div>
-                <div style="background: green;"></div>
-                <div></div>
-                <div style="background: green;"></div>
+              <!-- taken from https://loading.io/css/ -->
+              <div class="lds-roller roller2"><div></div><div></div><div></div><div>
+                </div><div></div><div></div><div></div><div></div></div>
             </div>
         </div>
         <div class="high"></div>

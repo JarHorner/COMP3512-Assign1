@@ -24,7 +24,7 @@ li { list-style-position: inside; }
 .container {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: 22vw 37.5vw 37.5vw;
+    grid-template-columns: 19vw 39.5vw 38.5vw;
     grid-template-rows: 100px 125px 125px 125px 125px 125px 125px 125px;
 }
 
@@ -36,6 +36,7 @@ li { list-style-position: inside; }
 }
 
 /* css for mainview */
+
 .companies {
     grid-column: 1 / span 1;
     grid-row: 2 / span 6;
@@ -76,7 +77,7 @@ legend {
 
 #companylist {
     height: 612px;
-    width: 92.5%;
+    width: 89%;
     overflow: hidden;
     overflow-y: scroll;
     margin-bottom: 0px;
@@ -89,8 +90,8 @@ legend {
 }
 
 .companyinfo {
-    grid-column: 2 / span 1;
-    grid-row: 2 / span 3;
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 3;
 }
 
 .name-logo{
@@ -99,29 +100,39 @@ legend {
   display: none;
   align-items: center;
   flex-direction: row;
-background-color: white;
+  background-color: white;
 }
+
 .logo{
-  width: 35%;
+  width: 165px;
+  height: 60px;
+  border: 1px black solid;
 }
+
 .comp-name{
-  width: 70%;
+  width: 50%;
   text-align: center;
+  border: 1px black solid;
 }
+
 .comp-name h1{
   font-size: 0.9em;
 }
+
 .symbol{
-  width: 15%;
+  width: 12%;
   background-color: lightyellow;
   text-align: center;
   border-radius: 50%;
   border: 2px solid  #5cb85c;
+  
 }
+
 .company-symbol{
   font-size: 1.1em;
   font-weight: bolder;
 }
+
 .other-details{
   width: 95%;
   margin: 30px auto;
@@ -129,24 +140,28 @@ background-color: white;
   display: none;
   flex-direction: column;
 }
+
 .other-details table tr th{
   color: teal;
- font-weight: bolder;
+  font-weight: bolder;
 }
+
 #table-data{
   font-size: 0.7em;
 }
+
 .comp-description{
   width: 95%;
   margin: 20px auto;
 }
+
 .comp-description h1{
   font-size: 1.1em;
- padding-left: 30%;
- color: teal;
- font-weight: bolder;
-
+  padding-left: 30%;
+  color: teal;
+  font-weight: bolder;
 }
+
 .comp-description p{
   font-size: 0.8em;
 }
@@ -154,6 +169,22 @@ background-color: white;
 .stockdata {
     grid-column: 3 / span 1;
     grid-row: 2 / span 5;
+}
+
+#stocktable {
+  display: none;
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 585px;
+}
+
+th {
+  font-size: 25px;
+}
+
+td {
+  font-size: 18px;
+  padding-left: 12px;
 }
 
 .map {
@@ -200,7 +231,7 @@ li:hover {
 /* this section include all code borrowed or inspired by findings on the internet */
 
 /* loading animation css taken from https://loading.io/css/ */
-.lds-roller {
+  .lds-roller {
     display: inline-block;
     position: relative;
     display: block;
@@ -208,6 +239,9 @@ li:hover {
     height: 80px;
     margin-left: auto;
     margin-right: auto;
+  }
+  .roller2 {
+  display: none;
   }
   .lds-roller div {
     animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;

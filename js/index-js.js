@@ -1,9 +1,9 @@
 const companyListURL = 'https://www.randyconnolly.com/funwebdev/3rd/api/stocks/companies.php';
 //remember for stockData, add the symbol # at the end of the url (symbol=) using a queryString.
-const stockDataURL = 'https://www.randyconnolly.com/funwebdev/3rd/api/stocks/history.php?symbol=';
+let stockDataURL = 'https://www.randyconnolly.com/funwebdev/3rd/api/stocks/history.php?symbol=';
 
 let map;
-/* creates a Map element, more properties are set when a specific coompany is clicked */
+/* creates a Map element, more properties are set when a specific company is clicked */
 function initMap() {
     map = new google.maps.Map(document.querySelector('#location'), {
         mapTypeId: 'satellite'
@@ -48,7 +48,9 @@ document.querySelector(".reset")
                 companyList.appendChild(li);
            });
            document.querySelector('#location').style.display = 'none';
-           //in the future, will change the display of each section to 'none' 
+           document.querySelector('#company-information').style.display = 'none';
+           document.querySelector('#stocktable').style.display = "none";
+
         });
 
 // Get the credits
@@ -56,7 +58,7 @@ var credits = document.querySelector("#our-credits");
 // Get the icon that opens the credits
 var icon = document.querySelector(".fa-bar-chart");
 
-/* When the user clicks on the button, opens up the credits in view for 5 seconds 
+/* When the user scrolls over the icon, credits open in view for 5 seconds 
 Heavily inspired by https://www.w3schools.com/howto/howto_css_modals.asp */
 document.querySelector('.fa-bar-chart')
         .addEventListener('mouseover', () => {
@@ -66,13 +68,13 @@ document.querySelector('.fa-bar-chart')
             }, 5000);
         });
 
-/* When the user clicks anywhere outside of the credits, close it. alternative to
-the 5 second wait
+/* When the user clicks anywhere outside of the credits, close it. alternative to 
+the 5 second wait */
 window.onclick = function(event) {
     if (event.target == credits) {
         credits.style.display = "none";
     }
-  } */ 
+  }
 
 /* Function that find the matches within the input box, and populates a list accordingly */
 function findMatches() {
@@ -108,6 +110,7 @@ function displayInformation(e) {
 
 /*function to populate company information*/
 function populateCompanyInformation(company) {
+    document.querySelector('#company-information').style.display = 'block';
     document.querySelector('.name-logo').style.display = 'flex';
     document.querySelector('.other-details').style.display = 'flex';
     const item = document.querySelector('.company-name');
@@ -127,7 +130,7 @@ function populateCompanyInformation(company) {
     exchange.textContent = company.exchange;
     companyDescription.textContent = company.description;
     
-    const logo = document.querySelector(".logoImage");
+    const logo = document.querySelector(".logo");
     logo.src = `./logos/${company.symbol}.svg`;
 }
 
@@ -140,75 +143,53 @@ function populateMap(company) {
 
 
 let companyStock = [];
-const date =[];
 function populateStockData(company) {
-  const stockDataURL = `https://www.randyconnolly.com/funwebdev/3rd/api/stocks/history.php?symbol=${company.symbol}`;
-  fetch(stockDataURL)
-    .then((res) => {
-      if (res.ok) return res.json();
-      else
-        throw new Error(
-          "Response from json failed! check URL or internet connection."
-        );
-    })
-    .then((data) => {
-      //need to save JSON to localStorage here
-      companyStock = data;
-      
-      const date = document.querySelector(".date");
-      const open = document.querySelector(".open");
-      const close = document.querySelector(".close");
-      const low = document.querySelector(".low");
-      const high = document.querySelector(".high");
-      const volume = document.querySelector(".volume");
+    document.querySelector('.roller2').style.display = "block";
+    stockDataURL = `https://www.randyconnolly.com/funwebdev/3rd/api/stocks/history.php?symbol=${company.symbol}`;
+    fetch(stockDataURL)
+        .then((res) => {
+            if (res.ok) return res.json();
+            else
+                throw new Error("Response from json failed! check URL or internet connection.");
+        })
+        .then((data) => {
+            companyStock = data;
+            
+            const date = document.querySelector(".date");
+            const open = document.querySelector(".open");
+            const close = document.querySelector(".close");
+            const low = document.querySelector(".low");
+            const high = document.querySelector(".high");
+            const volume = document.querySelector(".volume");
 
 
-      var stockdata = document.querySelector("table.stockdata tbody")
-      stockdata.innerHTML = '';
-      console.log(companyStock)
-      companyStock.forEach((item) => {
-        var tr = document.createElement('tr');
-        var tdDate = document.createElement('td');
-        var tdOpen = document.createElement('td');
-        var tdClose = document.createElement('td');
-        var tdLow = document.createElement('td');
-        var tdHigh = document.createElement('td');
-        var tdVolume = document.createElement('td');
-        tdDate.textContent = item.date;
-        tdOpen.textContent = item.open;
-        tdClose.textContent = item.close;
-        tdLow.textContent = item.low;
-        tdHigh.textContent = item.high;
-        tdVolume.textContent = item.volume;
-        tr.appendChild(tdDate);
-        tr.appendChild(tdOpen);
-        tr.appendChild(tdClose);
-        tr.appendChild(tdLow);
-        tr.appendChild(tdHigh);
-        tr.appendChild(tdVolume);
-        stockdata.appendChild(tr);
-      });
-      })
-    
-    .catch((error) => console.log(`found a ${error}`));
+            const stockdata = document.querySelector("table.data tbody")
+            stockdata.innerHTML = '';
+            console.log(companyStock)
+            companyStock.forEach((item) => {
+                const tr = document.createElement('tr');
+                const tdDate = document.createElement('td');
+                const tdOpen = document.createElement('td');
+                const tdClose = document.createElement('td');
+                const tdLow = document.createElement('td');
+                const tdHigh = document.createElement('td');
+                const tdVolume = document.createElement('td');
+                tdDate.textContent = item.date;
+                tdOpen.textContent = item.open;
+                tdClose.textContent = item.close;
+                tdLow.textContent = item.low;
+                tdHigh.textContent = item.high;
+                tdVolume.textContent = item.volume;
+                tr.appendChild(tdDate);
+                tr.appendChild(tdOpen);
+                tr.appendChild(tdClose);
+                tr.appendChild(tdLow);
+                tr.appendChild(tdHigh);
+                tr.appendChild(tdVolume);
+                stockdata.appendChild(tr);
+            });
+            document.querySelector('.roller2').style.display = "none";
+            document.querySelector('#stocktable').style.display = "block";
+        })
+        .catch((error) => console.log(`found a ${error}`));
 }
-
-function encodeQuery(data, company){ 
-    let query = data.url 
-    for (let d in data.params) 
-         query += encodeURIComponent(d) + '='
-              + encodeURIComponent(data.params[d]) + '&'; 
-    return query.slice(0, -1) 
-} 
-  
-// Json object that should be 
-// converted to query parameter 
-data = {  
-    url : stockDataURL, 
-    params : { 
-        'website':'funwebdev/3rd/api/stocks/history.php', 
-        'symbol': company.symbol
-    } 
-} 
-queryParam = encodeQuery(data) 
-console.log(queryParam)
