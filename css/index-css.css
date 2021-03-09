@@ -48,7 +48,7 @@ li { list-style-position: inside; }
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 19vw 39.5vw 38.5vw;
-    grid-template-rows: 100px 125px 125px 125px 125px 125px 125px 125px;
+    grid-template-rows: 100px 145px 145px 145px 145px 145px 145px 145px;
 }
 
 .header {
@@ -101,7 +101,7 @@ legend {
 }
 
 #companylist {
-    height: 612px;
+    height: 727px;
     width: 89%;
     overflow: hidden;
     overflow-y: scroll;
@@ -205,7 +205,7 @@ legend {
   display: none;
   overflow: hidden;
   overflow-y: scroll;
-  height: 534px;
+  height: 630px;
 }
 
 #stock-headers th {
@@ -235,7 +235,7 @@ legend {
 }
 
 #location {
-    height: 350px;
+    height: 410px;
     position: relative;
     bottom: 35px;
     display: none;
