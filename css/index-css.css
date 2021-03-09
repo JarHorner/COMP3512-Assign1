@@ -161,6 +161,7 @@ legend {
 }
 
 .other-details{
+  text-align: center;
   width: 97%;
   height: 255px;
   margin: 30px auto;
@@ -187,7 +188,6 @@ legend {
 
 .comp-description h1{
   font-size: 1.5em;
-  padding-left: 30%;
   color: teal;
   font-weight: bolder;
 }

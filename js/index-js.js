@@ -75,7 +75,6 @@ function displayInformation(e) {
     populateCompanyInformation(company)
     populateMap(company);
     fetchStockData(company);
-    populateStockData(company);
 }
 
 /* Empties the company list, then re-creates it along  with changing all
@@ -178,10 +177,12 @@ function fetchStockData(company) {
 An event handler is added  to the headers, to sort each category
 (refer to organizeData) */
 function populateStockData() {
-    const stockdata = document.querySelector("table.data tbody");
     const stockHeaders = document.querySelector("table.data thead tr");
-    console.log(stockdata);
-    stockdata.innerHTML = '';
+    //const div = document.querySelector("#remove");
+    //div.appendChild(document.createElement("tbody"));
+    const stockData = document.querySelector("table.data tbody");
+    //while  (stockData.firstChild) stockData.removeChild(stockData.firstChild);
+    stockData.innerHTML = '';
     companyStock.forEach((item) => {
         const tr = document.createElement('tr');
         const tdDate = document.createElement('td');
@@ -202,7 +203,7 @@ function populateStockData() {
         tr.appendChild(tdLow);
         tr.appendChild(tdHigh);
         tr.appendChild(tdVolume);
-        stockdata.appendChild(tr);
+        stockData.appendChild(tr);
     });
     stockHeaders.addEventListener('click', organizeData);
     document.querySelector('.roller2').style.display = "none";
@@ -212,7 +213,7 @@ function populateStockData() {
 /* allows  each column of stock data to be organized ascending or descending,
 by finding which column was clicked (refer to columnNumber) and re-organizing the data.
 Heavily inspired by https://www.w3schools.com/howto/howto_js_sort_table.asp, with some
-changing to fit this table  */
+changes to fit this table  */
 function organizeData(e) {
     let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.querySelector("table.data");
