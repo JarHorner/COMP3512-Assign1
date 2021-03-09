@@ -308,6 +308,10 @@ table thead th:hover, li:hover {
   font-size: 48px;
 }
 
+.financial-table {
+  font-size: 1.3em;
+}
+
 /* this section include all code borrowed or inspired by findings on the internet */
 
 /* loading animation css taken from https://loading.io/css/ */
