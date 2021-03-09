@@ -471,3 +471,17 @@ table thead th:hover, li:hover {
   text-align: center;
   color: black;
 }
+#candlechart {
+	width: 400px;
+	height: 300px;
+	display: inline;
+}
+#barchart {
+	width: 400px;
+	height: 300px;
+}
+#linechart {
+	height: 300px;
+	width: 800px;
+}
+
