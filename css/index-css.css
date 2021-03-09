@@ -98,7 +98,6 @@ legend {
 .button:hover{
   background-color: turquoise;
   transform: scale(1.2); 
-  cursor: pointer;
 }
 
 #companylist {
@@ -227,7 +226,7 @@ legend {
 }
 
 .data td {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .map {
@@ -258,10 +257,10 @@ legend {
 }
 
 .calculations td{
-  font-size: 1.15em;
-  text-align: end;
-  padding-left: 13px;
-  padding-right:33px;
+  font-size: 1.1em;
+  text-align: center;
+  padding-left: 12px;
+  padding-right: 12px;
   padding-bottom: 8px;
   padding-top: 10px;
   border-bottom: 1px black solid;
@@ -291,25 +290,40 @@ table thead th:hover, li:hover {
     grid-row: 4 / span 4;
 }
 
-.companyInfo {
-  text-align: center;
-}
-
 .chartsBtn {
   position: relative;
   left: 250px;
-  bottom: 20px;
-  z-index: 0;
-  display: none;
+  bottom: 20px
 }
 
-.noInfo {
+.closeBtn{
+  background-color: #5cb85c;
+  border: none;
+  border-radius: 40px;
+  height: 30px;
   text-align: center;
-  font-size: 48px;
+  width: 90px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-right: 20px;
 }
 
-.financial-table {
-  font-size: 1.3em;
+.speakBtn{
+  background-color: turquoise;
+  border: none;
+  border-radius: 40px;
+  height: 30px;
+  text-align: center;
+  width: 90px;
+  font-weight: bold;
+  margin-left: 30%;
+  margin-top: 5px;
+  margin-right: 20px;
+}
+
+.speakBtn:hover, .closeBtn:hover {
+  transform: scale(1.2);
+  cursor: pointer;
 }
 
 /* this section include all code borrowed or inspired by findings on the internet */
@@ -457,3 +471,17 @@ table thead th:hover, li:hover {
   text-align: center;
   color: black;
 }
+#candlechart {
+	width: 400px;
+	height: 300px;
+	display: inline;
+}
+#barchart {
+	width: 400px;
+	height: 300px;
+}
+#linechart {
+	height: 300px;
+	width: 800px;
+}
+

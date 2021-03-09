@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COMP 3512 Assign1</title> 
 
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js" integrity="sha256-NZlQFkif+Cpc0rqEGGpSmaU55Vw4aMWK5KC3BRACd/Q=" crossorigin="anonymous" async></script>
     <link rel="stylesheet" href="css/index-css.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
@@ -101,10 +102,10 @@
                     <thead>
                         <tr id="stock-headers">
                             <th class="stock-header">Date</th>
-                            <th class="stock-header">Open($)</th>
-                            <th class="stock-header">Close($)</th>
-                            <th class="stock-header">Low($)</th>
-                            <th class="stock-header">High($)</th>
+                            <th class="stock-header">Open</th>
+                            <th class="stock-header">Close</th>
+                            <th class="stock-header">Low</th>
+                            <th class="stock-header">High</th>
                             <th class="stock-header">Volume</th>
                         </tr>
                     </thead>
@@ -134,28 +135,21 @@
 
         <div class="box charts second">
             <h1 class="title">Charts</h1>
+	    <div id="chartswrapper">
+		<div id="candlechart"></div>
+		<div id="barchart"></div>
+		<div id="linechart"></div>
+	    </div>
         </div>
         <div class="box description second">
-            <h1 class="title"></h1>
+            <h1 class="title">Company Name + Symbol</h1>
             <section class="companyInfo">
-                <p class="company-desc"></p>
-                <button class="speakBtn button">Speak</button>
-                <button class="closeBtn button">Close</button>
+                <button class="speakBtn">Speak</button>
+                <button class="closeBtn">Close</button>
             </section>
         </div>
         <div class="box financials second">
             <h1 class="title">Financials</h1>
-            <section id="finance-section">
-                <table class="financial-table" style="width:100%">
-                    <tbody>
-                        <tr class="year"></tr>
-                        <tr class="revenue"></tr>
-                        <tr class="earnings"></tr>
-                        <tr class="assets"></tr>
-                        <tr class="liabilities"></tr>
-                    </tbody>
-                </table>
-            </section>
         </div>
     </main>
 
