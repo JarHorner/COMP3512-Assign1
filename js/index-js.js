@@ -74,6 +74,7 @@ function displayInformation(e) {
     const company = companies.find( c => c.name == e.target.textContent);
     populateCompanyInformation(company)
     populateMap(company);
+    fetchStockData(company);
     populateStockData(company);
 }
 
@@ -148,10 +149,10 @@ function populateMap(company) {
     document.querySelector('#location').style.display = "block";
 }
 
-/* Populates the stock data section, by fetching a specific API then building a table
-to oorganize the data. An event handler is added  to the headers, to sort each category
-(refer to organizeData) */
-function populateStockData(company) {
+/* Fetchs a specific API using a query string of the clicked companies symbol, populating
+ the stock data sections (refer to populateStockData, calculatingAverage, calculatingMin, and
+calculatingMax)*/
+function fetchStockData(company) {
     const stockDataURL = `https://www.randyconnolly.com/funwebdev/3rd/api/stocks/history.php?symbol=${company.symbol}`;
     document.querySelector('#stocktable').style.display = "none";
     document.querySelector('.roller2').style.display = "block";
@@ -163,36 +164,8 @@ function populateStockData(company) {
         })
         .then((data) => {
             companyStock.push(...data);
-
-            const stockdata = document.querySelector("table.data tbody");
-            const stockHeaders = document.querySelector("table.data thead tr");
-            stockdata.innerHTML = '';
-            companyStock.forEach((item) => {
-                const tr = document.createElement('tr');
-                const tdDate = document.createElement('td');
-                const tdOpen = document.createElement('td');
-                const tdClose = document.createElement('td');
-                const tdLow = document.createElement('td');
-                const tdHigh = document.createElement('td');
-                const tdVolume = document.createElement('td');
-                tdDate.textContent = item.date;
-                tdOpen.textContent = item.open;
-                tdClose.textContent = item.close;
-                tdLow.textContent = item.low;
-                tdHigh.textContent = item.high;
-                tdVolume.textContent = item.volume;
-                tr.appendChild(tdDate);
-                tr.appendChild(tdOpen);
-                tr.appendChild(tdClose);
-                tr.appendChild(tdLow);
-                tr.appendChild(tdHigh);
-                tr.appendChild(tdVolume);
-                stockdata.appendChild(tr);
-            });
-            stockHeaders.addEventListener('click', organizeData);
-            document.querySelector('.roller2').style.display = "none";
-            document.querySelector('#stocktable').style.display = "block";
-            //calculates each row average, min, and max (refer to Calculations)
+            populateStockData();
+            //calculates each row average, min, and max (refer to each method)
             calculatingAverage();
             calculatingMin();
             calculatingMax();
@@ -201,31 +174,41 @@ function populateStockData(company) {
         .catch((error) => console.log(`found a ${error}`));
 }
 
-/* button to switch UI to secondary */
+/* Populates the stock data section, building a table to organize the data 
+An event handler is added  to the headers, to sort each category
+(refer to organizeData) */
+function populateStockData() {
+    const stockdata = document.querySelector("table.data tbody");
+    const stockHeaders = document.querySelector("table.data thead tr");
+    console.log(stockdata);
+    stockdata.innerHTML = '';
+    companyStock.forEach((item) => {
+        const tr = document.createElement('tr');
+        const tdDate = document.createElement('td');
+        const tdOpen = document.createElement('td');
+        const tdClose = document.createElement('td');
+        const tdLow = document.createElement('td');
+        const tdHigh = document.createElement('td');
+        const tdVolume = document.createElement('td');
+        tdDate.textContent = item.date;
+        tdOpen.textContent = item.open;
+        tdClose.textContent = item.close;
+        tdLow.textContent = item.low;
+        tdHigh.textContent = item.high;
+        tdVolume.textContent = item.volume;
+        tr.appendChild(tdDate);
+        tr.appendChild(tdOpen);
+        tr.appendChild(tdClose);
+        tr.appendChild(tdLow);
+        tr.appendChild(tdHigh);
+        tr.appendChild(tdVolume);
+        stockdata.appendChild(tr);
+    });
+    stockHeaders.addEventListener('click', organizeData);
+    document.querySelector('.roller2').style.display = "none";
+    document.querySelector('#stocktable').style.display = "block";
+}
 
-        document.querySelector(".view-chatsBtn").addEventListener('click', () => {
-           document.querySelector('.companies').style.display = "none";
-           document.querySelector('.companyinfo').style.display = "none";
-           document.querySelector('.map').style.display = "none";
-           document.querySelector('.stockdata').style.display = "none";
-           document.querySelector('.stockcalcs').style.display = "none";
-           document.querySelector('.charts').style.display = "block";
-           document.querySelector('.description').style.display = "block";
-           document.querySelector('.financials').style.display = "block";
-        });
-
-         /* button to switch UI to deafult */
-         document.querySelector(".closeBtn").addEventListener('click', () => {
-            document.querySelector('.companies').style.display = "block";
-            document.querySelector('.companyinfo').style.display = "block";
-            document.querySelector('.map').style.display = "block";
-            document.querySelector('.stockdata').style.display = "block";
-            document.querySelector('.stockcalcs').style.display = "block";
-            document.querySelector('.charts').style.display = "none";
-            document.querySelector('.description').style.display = "none";
-            document.querySelector('.financials').style.display = "none";
-         });
-         
 /* allows  each column of stock data to be organized ascending or descending,
 by finding which column was clicked (refer to columnNumber) and re-organizing the data.
 Heavily inspired by https://www.w3schools.com/howto/howto_js_sort_table.asp, with some
@@ -376,3 +359,28 @@ function calculatingMax() {
         maxRow.appendChild(td);
     }
 }
+
+/* button to switch UI to secondary */
+
+document.querySelector(".view-chatsBtn").addEventListener('click', () => {
+    document.querySelector('.companies').style.display = "none";
+    document.querySelector('.companyinfo').style.display = "none";
+    document.querySelector('.map').style.display = "none";
+    document.querySelector('.stockdata').style.display = "none";
+    document.querySelector('.stockcalcs').style.display = "none";
+    document.querySelector('.charts').style.display = "block";
+    document.querySelector('.description').style.display = "block";
+    document.querySelector('.financials').style.display = "block";
+ });
+
+  /* button to switch UI to deafult */
+  document.querySelector(".closeBtn").addEventListener('click', () => {
+     document.querySelector('.companies').style.display = "block";
+     document.querySelector('.companyinfo').style.display = "block";
+     document.querySelector('.map').style.display = "block";
+     document.querySelector('.stockdata').style.display = "block";
+     document.querySelector('.stockcalcs').style.display = "block";
+     document.querySelector('.charts').style.display = "none";
+     document.querySelector('.description').style.display = "none";
+     document.querySelector('.financials').style.display = "none";
+  });

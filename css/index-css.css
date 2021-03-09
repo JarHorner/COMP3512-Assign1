@@ -8,7 +8,7 @@ body {
 }
 
 h1{
-color: teal;
+color: #334A6C;
 }
 
 .box {
@@ -259,7 +259,7 @@ legend {
 .calculations td{
   font-size: 1.1em;
   text-align: center;
-  padding-left: 20px;
+  padding-left: 12px;
   padding-right: 12px;
   padding-bottom: 8px;
   padding-top: 10px;
@@ -301,6 +301,7 @@ table thead th:hover, li:hover {
   margin-top: 5px;
   margin-right: 20px;
 }
+
 .closeBtn:hover{
   transform: scale(1.2);
 }
@@ -317,6 +318,7 @@ table thead th:hover, li:hover {
   margin-top: 5px;
   margin-right: 20px;
 }
+
 .speakBtn:hover{
   transform: scale(1.2);
 }
@@ -456,7 +458,7 @@ table thead th:hover, li:hover {
   padding: 2px 16px;
   text-align: center;
   font-size: 18px;
-  background-color: #5cb85c;
+  background-color: #a3c2c2;
   color: white;
 }
 
@@ -464,4 +466,5 @@ table thead th:hover, li:hover {
 .credits-body {
   padding: 2px 16px;
   text-align: center;
+  color: black;
 }
