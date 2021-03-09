@@ -1,11 +1,34 @@
 
 /* general css */
 
-body { margin: 10px 10px 10px 10px; }
+body { 
+    margin: 10px 10px 10px 10px;
+    font-family: 'Nunito Sans', sans-serif;
+    background-color: rgb(221, 220, 220);         
+}
+
+h1{
+color: #334A6C;
+}
 
 .box {
     border-radius: 2px;
     background-color: #a3c2c2;
+}
+
+.header-contents {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.header-contents h1 {
+  padding-left: 30%;
+  color: white;
+}
+
+.header-contents i {
+  padding: 20px;
 }
 
 .title {
@@ -33,6 +56,8 @@ li { list-style-position: inside; }
     grid-row: 1 / span 1;
     display: flex;
     align-items: center;
+    color: white;
+    height: 70px;
 }
 
 /* css for mainview */
@@ -136,6 +161,7 @@ legend {
 }
 
 .other-details{
+  text-align: center;
   width: 97%;
   height: 255px;
   margin: 30px auto;
@@ -162,7 +188,6 @@ legend {
 
 .comp-description h1{
   font-size: 1.5em;
-  padding-left: 30%;
   color: teal;
   font-weight: bolder;
 }
@@ -180,7 +205,7 @@ legend {
   display: none;
   overflow: hidden;
   overflow-y: scroll;
-  height: 585px;
+  height: 534px;
 }
 
 #stock-headers th {
@@ -234,7 +259,7 @@ legend {
 .calculations td{
   font-size: 1.1em;
   text-align: center;
-  padding-left: 20px;
+  padding-left: 12px;
   padding-right: 12px;
   padding-bottom: 8px;
   padding-top: 10px;
@@ -263,6 +288,42 @@ table thead th:hover, li:hover {
 .financials {
     grid-column: 3 / span 1;
     grid-row: 4 / span 4;
+}
+
+.chartsBtn {
+  position: relative;
+  left: 250px;
+  bottom: 20px
+}
+
+.closeBtn{
+  background-color: #5cb85c;
+  border: none;
+  border-radius: 40px;
+  height: 30px;
+  text-align: center;
+  width: 90px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-right: 20px;
+}
+
+.speakBtn{
+  background-color: turquoise;
+  border: none;
+  border-radius: 40px;
+  height: 30px;
+  text-align: center;
+  width: 90px;
+  font-weight: bold;
+  margin-left: 30%;
+  margin-top: 5px;
+  margin-right: 20px;
+}
+
+.speakBtn:hover, .closeBtn:hover {
+  transform: scale(1.2);
+  cursor: pointer;
 }
 
 /* this section include all code borrowed or inspired by findings on the internet */
@@ -400,7 +461,7 @@ table thead th:hover, li:hover {
   padding: 2px 16px;
   text-align: center;
   font-size: 18px;
-  background-color: #5cb85c;
+  background-color: #a3c2c2;
   color: white;
 }
 
@@ -408,4 +469,19 @@ table thead th:hover, li:hover {
 .credits-body {
   padding: 2px 16px;
   text-align: center;
+  color: black;
 }
+#candlechart {
+	width: 400px;
+	height: 300px;
+	display: inline;
+}
+#barchart {
+	width: 400px;
+	height: 300px;
+}
+#linechart {
+	height: 300px;
+	width: 800px;
+}
+
