@@ -1,4 +1,4 @@
-const companyListURL = 'https://www.randyconnolly.com/funwebdev/3rd/api/stocks/compasnies.php';
+const companyListURL = 'https://www.randyconnolly.com/funwebdev/3rd/api/stocks/companies.php';
 
 let map;
 /* creates a Map element, more properties are set when a specific company is clicked */
@@ -162,15 +162,11 @@ function populateStockData(company) {
                 throw new Error("Response from json failed!");
         })
         .then((data) => {
-            companyStock.push(...data);
+            companyStock = data;
             const table = document.querySelector('table.data');
             const stockdata = document.querySelector("table.data tbody");
             const stockHeaders = document.querySelector("table.data thead tr");
-            if (table.rows > 0) {
-                for(let i = 1; i  < table.rows.length - 1; i++)
-                    document.querySelector('table.data').deleteRow(i);
-            }
-            //stockdata.innerHTML = '';
+	    stockdata.innerHTML = '';
             companyStock.forEach((item) => {
                 const tr = document.createElement('tr');
                 const tdDate = document.createElement('td');
