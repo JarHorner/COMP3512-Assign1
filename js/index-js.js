@@ -453,6 +453,69 @@ function populateFinancials(company) {
             tdLiabilities.textContent = finacials.liabilities[i];
             liabilities.appendChild(tdLiabilities);
         }
+    }
+}
+
+/* checks too see if the company has financials, if not a heading is inserted instead
+of a table. If the company does, a table is populated with that information */
+function populateFinancials(company) {
+    const finacials = company.financials;
+    console.log(finacials);
+    const section =  document.querySelector('#finance-section');
+    const h1 = document.createElement('h1');
+    const companyFinance = document.querySelector(".financial-table tbody");
+    if (!finacials) {
+        document.querySelector('.financial-table').style.display = "none";
+        h1.className = "noInfo";
+        h1.innerHTML = "No Financial Information Available";
+        section.appendChild(h1);
+        setTimeout( () => { section.removeChild(h1)}, 20000);
+    } else {
+        let td1 = document.createElement('td');
+        td1.innerHTML = "<b>Year:<b>";
+        const year = document.querySelector('.year');
+        year.appendChild(td1);
+        for (let i=0; i < finacials.years.length; i++) {
+            const tdYear = document.createElement('td');
+            tdYear.textContent = finacials.years[i];
+            year.appendChild(tdYear);
+        }
+        const td2 = document.createElement('td');
+        td2.innerHTML = "<b>Revenue:<b>";
+        const revenue = document.querySelector('.revenue');
+        revenue.appendChild(td2);
+        for (let i=0; i < finacials.revenue.length; i++) {
+            const tdRevenue = document.createElement('td');
+            tdRevenue.textContent = finacials.revenue[i];
+            revenue.appendChild(tdRevenue);
+        }
+        const td3 = document.createElement('td');
+        td3.innerHTML = "<b>Earnings:<b>";
+        const earnings = document.querySelector('.earnings');
+        earnings.appendChild(td3);
+        for (let i=0; i < finacials.earnings.length; i++) {
+            const tdEarnings = document.createElement('td');
+            tdEarnings.textContent = finacials.earnings[i];
+            earnings.appendChild(tdEarnings);
+        }
+        const td4 = document.createElement('td');
+        td4.innerHTML = "<b>Assests:<b>";
+        const assets = document.querySelector('.assets');
+        assets.appendChild(td4);
+        for (let i=0; i < finacials.assets.length; i++) {
+            const tdAssests = document.createElement('td');
+            tdAssests.textContent = finacials.assets[i];
+            assets.appendChild(tdAssests);
+        }
+        const td5 = document.createElement('td');
+        td5.innerHTML = "<b>Liabilities:<b>";
+        const liabilities = document.querySelector('.liabilities');
+        liabilities.appendChild(td5);
+        for (let i=0; i < finacials.liabilities.length; i++) {
+            const tdLiabilities = document.createElement('td');
+            tdLiabilities.textContent = finacials.liabilities[i];
+            liabilities.appendChild(tdLiabilities);
+        }
 }
 }
 
