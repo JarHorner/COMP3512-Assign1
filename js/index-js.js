@@ -1,4 +1,4 @@
-const companyListURL = 'https://www.randyconnolly.com/funwebdev/3rd/api/stocks/compasnies.php';
+const companyListURL = 'https://www.randyconnolly.com/funwebdev/3rd/api/stocks/companies.php';
 
 let map;
 /* creates a Map element, more properties are set when a specific company is clicked */
@@ -75,6 +75,8 @@ function displayInformation(e) {
     populateCompanyInformation(company)
     populateMap(company);
     populateStockData(company);
+    populateDescription(company);
+    populateFinancials(company);
 }
 
 /* Empties the company list, then re-creates it along  with changing all
@@ -89,6 +91,7 @@ function clearButton() {
     document.querySelector('#location').style.display = 'none';
     document.querySelector('#company-information').style.display = 'none';
     document.querySelector('#stocktable').style.display = "none";
+    document.querySelector('.chartsBtn').style.display = "none";
     document.querySelector('.calculations').style.display = "none";
 }
 
@@ -162,15 +165,10 @@ function populateStockData(company) {
                 throw new Error("Response from json failed!");
         })
         .then((data) => {
-            companyStock.push(...data);
-            const table = document.querySelector('table.data');
+            companyStock = data;
             const stockdata = document.querySelector("table.data tbody");
             const stockHeaders = document.querySelector("table.data thead tr");
-            if (table.rows > 0) {
-                for(let i = 1; i  < table.rows.length - 1; i++)
-                    document.querySelector('table.data').deleteRow(i);
-            }
-            //stockdata.innerHTML = '';
+            stockdata.innerHTML = '';
             companyStock.forEach((item) => {
                 const tr = document.createElement('tr');
                 const tdDate = document.createElement('td');
@@ -196,6 +194,7 @@ function populateStockData(company) {
             stockHeaders.addEventListener('click', organizeData);
             document.querySelector('.roller2').style.display = "none";
             document.querySelector('#stocktable').style.display = "block";
+            document.querySelector('.chartsBtn').style.display = "block";
             //calculates each row average, min, and max (refer to each method)
             calculatingAverage();
             calculatingMin();
@@ -266,19 +265,20 @@ function columnNumber(name) {
     switch(name) {
         case 'Date':
             return 0;
-        case 'Open':
+        case 'Open($)':
             return 1;
-        case 'Close':
+        case 'Close($)':
             return 2;
-        case 'Low':
+        case 'Low($)':
             return 3;
-        case 'High':
+        case 'High($)':
             return 4;
         case 'Volume':
             return 5;
     }
 }
 
+/* */
 function calculatingAverage() {
     let  x, average, n;
     const table = document.querySelector("table.data");
@@ -298,13 +298,19 @@ function calculatingAverage() {
             average += Number(x.innerHTML);
             n++;
         }
-        average = (average/n).toFixed(3);
-        td =  document.createElement('td');
-        td.innerHTML  =  average;
-        averageRow.appendChild(td);
+        average = average/n;
+        td =  document.createElement('td')
+        if (c == 5) {
+            td.innerHTML = average.toFixed(0);
+            averageRow.appendChild(td);  
+        } else {
+            td.innerHTML = `$${average.toFixed(4)}`;
+            averageRow.appendChild(td);
+        }
     }
 }
 
+/* */
 function calculatingMin() {
     let  x, min;
     const table = document.querySelector("table.data");
@@ -325,12 +331,18 @@ function calculatingMin() {
                 min = Number(x.innerHTML);
             }
         }
-        td = document.createElement('td');
-        td.innerHTML  =  min;
-        minRow.appendChild(td);
+        td =  document.createElement('td');
+        if (c == 5) {
+            td.innerHTML  =  min.toFixed(0);
+            minRow.appendChild(td);  
+        } else {
+            td.innerHTML = `$${min.toFixed(4)}`;
+            minRow.appendChild(td);
+        }
     }
 }
 
+/* */
 function calculatingMax() {
     let  x, max;
     const table = document.querySelector("table.data");
@@ -341,7 +353,7 @@ function calculatingMax() {
     maxRow.appendChild(td);
     const rows  =  table.rows;
 
-    for (let c = 1;  c  < 6;  c++)  {
+    for (let c = 1;  c < 6;  c++)  {
         max = Number(rows[c].querySelectorAll("td")[c].innerHTML);
         for (let i = 1; i < (rows.length - 1); i++) {
 
@@ -351,13 +363,43 @@ function calculatingMax() {
             }
         }
         td =  document.createElement('td');
-        td.innerHTML  =  max;
-        maxRow.appendChild(td);
+        if (c == 5) {
+            td.innerHTML  =  max.toFixed(0);
+            maxRow.appendChild(td);  
+        } else {
+            td.innerHTML  =  `$${max.toFixed(4)}`;
+            maxRow.appendChild(td);
+        }
+    }
+}
+
+/* */
+function populateDescription(company) {
+    const title = document.querySelector('.description .title');
+    title.textContent = `${company.name} (${company.symbol})`;
+    const description = document.querySelector('.company-desc');
+    description.textContent = company.description;
+    document.querySelector('.speakBtn').addEventListener('click', (e) => {
+        const utterance = new SpeechSynthesisUtterance(description.textContent);
+        speechSynthesis.speak(utterance);
+    });
+}
+
+/* */
+function populateFinancials(company) {
+    const finacials = company.financials;
+    console.log(finacials);
+    if (!finacials) {
+        const section =  document.querySelector('#finance-section');
+        section.innerHTML = '';
+        const h1 = document.createElement('h1');
+        h1.className = "noInfo";
+        h1.innerHTML = "No Financial Information Available";
+        section.appendChild(h1);
     }
 }
 
 /* button to switch UI to secondary */
-
 document.querySelector(".chartsBtn").addEventListener('click', () => {
     document.querySelectorAll('.main').forEach( section => {
         section.style.display = 'none';
@@ -365,6 +407,7 @@ document.querySelector(".chartsBtn").addEventListener('click', () => {
     document.querySelectorAll('.second').forEach( section => {
         section.style.display = 'block';
     });
+
  });
 
   /* button to switch UI to deafult */
