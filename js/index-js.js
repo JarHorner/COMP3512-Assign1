@@ -821,7 +821,7 @@ document.querySelector(".chartsBtn").addEventListener('click', () => {
     document.querySelectorAll('.second').forEach( section => {
         section.style.display = 'block';
     });
-
+    populateCharts();
  });
 
   /* button to switch UI to deafult */
